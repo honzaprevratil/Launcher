@@ -1,0 +1,34 @@
+﻿<Window x:Class="Launcher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Launcher"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal" 
+        TextOptions.TextRenderingMode="Auto"    
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"    
+        Title="Launcher v beta 0.1" Height="416.43" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:Card Padding="20" Margin="5,5,5,0" Height="69">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of .exe projects</TextBlock>
+        </materialDesign:Card>
+        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="235" Margin="10,84,0,0" VerticalAlignment="Top" Width="497">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Run" HorizontalAlignment="Left" FontSize="25" Margin="10,324,0,0" VerticalAlignment="Top" Width="124" Click="Run_Click" Height="50"/>
+    </Grid>
+</Window>
