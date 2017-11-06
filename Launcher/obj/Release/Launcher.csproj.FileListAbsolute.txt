@@ -23,3 +23,29 @@ D:\prevrja15\Launcher\Launcher\obj\Release\Launcher.exe.manifest
 D:\prevrja15\Launcher\Launcher\obj\Release\Launcher.application
 D:\prevrja15\Launcher\Launcher\obj\Release\Launcher.exe
 D:\prevrja15\Launcher\Launcher\obj\Release\Launcher.pdb
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\Launcher.exe.config
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\Launcher.exe.manifest
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\Launcher.application
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\Launcher.exe
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\Launcher.pdb
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\FileHelpers.dll
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\MaterialDesignColors.dll
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\MaterialDesignThemes.Wpf.dll
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\FileHelpers.xml
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\MaterialDesignThemes.Wpf.pdb
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\bin\Release\MaterialDesignThemes.Wpf.xml
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.csprojResolveAssemblyReference.cache
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\MainWindow.g.cs
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\App.g.cs
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher_MarkupCompile.cache
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher_MarkupCompile.lref
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\App.baml
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\MainWindow.baml
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.g.resources
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.Properties.Resources.resources
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.csproj.GenerateResource.Cache
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.csproj.CoreCompileInputs.cache
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.exe.manifest
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.application
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.exe
+E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.pdb

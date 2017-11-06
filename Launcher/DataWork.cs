@@ -10,66 +10,59 @@ using System.Xml;
 
 namespace Launcher
 {
-    class DataWork
+    class FileFind
     {
         public ObservableCollection<DataClass> DataList = new ObservableCollection<DataClass> { };
-        public List<DataClass> AllData = new List<DataClass>();
         public string FileName = @"cesty.txt";
 
-        public void FindAllExeFiles()
+        public void ExeFilesFromSlnFiles()
         {
-            AllData.Clear();
+            DataList.Clear();
             foreach (DataClass Cesta in DataList)
             {
-                string cestaStr = Cesta.FullPath.ToString();
+                string cestaStr = Cesta.FullPath.ToString().Substring(0, (Cesta.FullPath.ToString()).Length -4);
                 string nazevStr = Cesta.FileName.ToString();
                 string slozka = nazevStr.Substring(0, nazevStr.Length - 4);
                 // string cestaStrBin = cestaStr.Substring(0, cestaStr.Length - 4) + "\\bin";
-                string csprojFile = cestaStr.Substring(0, cestaStr.Length - 4) + "\\" + slozka + ".csproj";
+                string csprojFile = cestaStr + "\\" + slozka + ".csproj";
 
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.Load(csprojFile);
                 XmlNamespaceManager mgr = new XmlNamespaceManager(xmldoc.NameTable);
+                mgr.AddNamespace("x", "http://schemas.microsoft.com/developer/msbuild/2003");
 
-                foreach (XmlNode item in xmldoc.SelectNodes("OutputPath[last()]", mgr))
+                foreach (XmlNode item in xmldoc.SelectNodes("//x:OutputPath", mgr))
                 {
-                    string exePath = cestaStr + "\\" + item.InnerText.ToString()+".exe"; //fix the path !! 
-                    FileInfo file = new FileInfo(exePath);
-                    DataClass x = new DataClass();
-                    x.FullPath = file.FullName;
-                    x.FileName = file.Name;
-                    AllData.Add(x);
+                    string exePath = cestaStr + "\\" + item.InnerText.ToString()+ slozka + ".exe"; //the path of exe
+                    FileInfo exeFile = new FileInfo(exePath);
+                    if (exeFile.Exists)
+                    {
+                        DataClass x = new DataClass();
+                        x.FullPath = exeFile.FullName;
+                        x.FileName = exeFile.Name;
+                        DataList.Add(x);
+                    }
                 }
             }
-            DataList.Clear();
-            foreach (DataClass Cesta in AllData)
-            {
-                DataList.Add(Cesta);
-            }
         }
-        public void FindAllSlnFilesInDirs(string directionary = "0")
+        public void SlnFilesInDirs(string dirRoot = "0")
         {
-            var engine = new FileHelperEngine<DataClass>();
-            DataClass[] res;
-            List<String> returnData = new List<String> { };
-
-            //@"D:\prevrja15"
-            if (directionary == "0")
+            if (dirRoot == "0")
             {
-                directionary = @"D:\prevrja15";
-            }
-            else
-            {
-                res = engine.ReadFile(FileName);
-                directionary = res[0].FullPath;
+                //directionary = @"D:\prevrja15";
+                dirRoot = @"E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos";
+                DataList.Clear();
             }
 
-            DataList.Clear();
-            DirectoryInfo[] dirs = new DirectoryInfo(directionary).GetDirectories(); //všechny podsložky zadané složky
-            foreach(DirectoryInfo oneDir in dirs)// projde podsložky
+            List<DirectoryInfo> RootDirs = new List<DirectoryInfo>(); //všechny podsložky root složky
+            foreach (DirectoryInfo OneDir in new DirectoryInfo(dirRoot).GetDirectories())
             {
-                List<FileInfo> slnFilesInDir = FindAllTypeFilesInDir(oneDir.FullName, ".sln");// sln soubory v dané podsložce
-                if (slnFilesInDir.Any())
+                RootDirs.Add(OneDir);
+            }
+            foreach (DirectoryInfo oneRootDir in RootDirs)// projde podsložky
+            {
+                List<FileInfo> slnFilesInDir = FindAllTypeFilesInDir(oneRootDir.FullName, ".sln");// sln soubory v dané podsložce
+                if (slnFilesInDir.Any()) //obsahuje alespoň jeden .sln
                 {
                     foreach (FileInfo file in slnFilesInDir) // pro každý sln
                     {
@@ -79,20 +72,15 @@ namespace Launcher
                         DataList.Add(x);
                     }
                 }
-                else
+                else //neobsahuje .sln
                 {
-                    foreach ( DirectoryInfo oneDirInDir in oneDir.GetDirectories()) // projde pod-podsložky
+                    List<DirectoryInfo> DirsOfRootDir = new List<DirectoryInfo>(oneRootDir.GetDirectories());// podsložky jedné root složky
+                    if (DirsOfRootDir.Any())
                     {
-                        slnFilesInDir = FindAllTypeFilesInDir(oneDirInDir.FullName, ".sln");
-                        foreach (FileInfo file in slnFilesInDir) // všechny soubory v pod-podsložkách
-                        {
-                            DataClass x = new DataClass();
-                            x.FullPath = file.FullName;
-                            x.FileName = file.Name;
-                            DataList.Add(x);
-                        }
-
+                        string Path = oneRootDir.FullName;
+                        SlnFilesInDirs(Path);// rekurze
                     }
+
                 }
             }
         }
@@ -130,10 +118,10 @@ namespace Launcher
 
                 record = new DataClass();
                 record.FullPath = cesta;
-                AllData.Add(record);
+                DataList.Add(record);
 
                 var engine = new FileHelperEngine<DataClass>();
-                engine.WriteFile(@"fileTXT.txt", AllData);
+                engine.WriteFile(@"fileTXT.txt", DataList);
             }
             else
             {
@@ -156,11 +144,9 @@ namespace Launcher
             }
 
             DataList.Clear();
-            AllData.Clear();
             foreach (var record in res)
             {
                 DataList.Add(record);
-                AllData.Add(record);
             }
         }
     }

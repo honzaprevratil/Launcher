@@ -23,13 +23,13 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        DataWork DataOfProgram = new DataWork();
+        FileFind FileFinder = new FileFind();
         public MainWindow()
         {
             InitializeComponent();
-            dataListView.ItemsSource = DataOfProgram.DataList;
-            DataOfProgram.FindAllSlnFilesInDirs();
-            DataOfProgram.FindAllExeFiles();
+            dataListView.ItemsSource = FileFinder.DataList;
+            FileFinder.SlnFilesInDirs();
+            FileFinder.ExeFilesFromSlnFiles();
         }
 
         private void Run_Click(object sender, RoutedEventArgs e)
