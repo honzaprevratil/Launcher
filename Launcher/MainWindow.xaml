@@ -13,22 +13,42 @@
         TextOptions.TextRenderingMode="Auto"    
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"    
-        Title="Launcher v beta 0.1" Height="416.43" Width="525">
+        Title="App Launcher" Height="500" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <materialDesign:Card Padding="20" Margin="5,5,5,0" Height="69">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of .exe projects</TextBlock>
+        <ToolBarTray>
+            <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
+                <Button ToolTip="Run selected program" Click="Run_Click">
+                    <materialDesign:PackIcon Kind="Run" />
+                </Button>
+                <Button ToolTip="Move selected project" Click="Run_Click">
+                    <materialDesign:PackIcon Kind="ContentCopy" />
+                </Button>
+                <Separator></Separator>
+                <Button ToolTip="Create .cvs file about project" Click="Run_Click">
+                    <materialDesign:PackIcon Kind="ContentPaste" />
+                </Button>
+                <Button  ToolTip="Edit .cvs file about project" Click="Run_Click">
+                    <materialDesign:PackIcon Kind="Pencil" />
+                </Button>
+                <Separator></Separator>
+                <Button ToolTip="Change loading path of projects" Click="Run_Click">
+                    <materialDesign:PackIcon Kind="Settings" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <materialDesign:Card Padding="15" Margin="3,33,3,0" Height="85">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of Apps (.exe) in projects</TextBlock>
         </materialDesign:Card>
-        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="235" Margin="10,84,0,0" VerticalAlignment="Top" Width="497">
+        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="328" Margin="7,130,0,0" VerticalAlignment="Top" Width="679">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Run" HorizontalAlignment="Left" FontSize="25" Margin="10,324,0,0" VerticalAlignment="Top" Width="124" Click="Run_Click" Height="50"/>
     </Grid>
 </Window>

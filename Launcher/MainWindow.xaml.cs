@@ -34,8 +34,14 @@ namespace Launcher
 
         private void Run_Click(object sender, RoutedEventArgs e)
         {
-            string path = dataListView.SelectedItem.ToString();
-            Process.Start(path);
+            try
+            {
+                string path = dataListView.SelectedItem.ToString();
+                Process.Start(path);
+            } catch
+            {
+                MessageBoxResult result = MessageBox.Show("Error: Select a file to run it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

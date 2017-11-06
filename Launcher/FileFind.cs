@@ -17,7 +17,7 @@ namespace Launcher
 
         public void ExeFilesFromSlnFiles()
         {
-            DataList.Clear();
+            List<DataClass> DataTemp = new List<DataClass>();
             foreach (DataClass Cesta in DataList)
             {
                 string cestaStr = Cesta.FullPath.ToString().Substring(0, (Cesta.FullPath.ToString()).Length -4);
@@ -40,9 +40,14 @@ namespace Launcher
                         DataClass x = new DataClass();
                         x.FullPath = exeFile.FullName;
                         x.FileName = exeFile.Name;
-                        DataList.Add(x);
+                        DataTemp.Add(x);
                     }
                 }
+            }
+            DataList.Clear();
+            foreach (DataClass x in DataTemp)
+            {
+                DataList.Add(x);
             }
         }
         public void SlnFilesInDirs(string dirRoot = "0")
@@ -61,7 +66,7 @@ namespace Launcher
             }
             foreach (DirectoryInfo oneRootDir in RootDirs)// projde podsložky
             {
-                List<FileInfo> slnFilesInDir = FindAllTypeFilesInDir(oneRootDir.FullName, ".sln");// sln soubory v dané podsložce
+                List<FileInfo> slnFilesInDir = FindFilesInDir(oneRootDir.FullName, ".sln");// sln soubory v dané podsložce
                 if (slnFilesInDir.Any()) //obsahuje alespoň jeden .sln
                 {
                     foreach (FileInfo file in slnFilesInDir) // pro každý sln
@@ -84,7 +89,7 @@ namespace Launcher
                 }
             }
         }
-        public List<FileInfo> FindAllTypeFilesInDir(string directionary = "0", string type = ".exe")
+        public List<FileInfo> FindFilesInDir(string directionary = "0", string fileType = ".exe")
         {
             List<FileInfo> returnData = new List<FileInfo> { };
 
@@ -97,7 +102,7 @@ namespace Launcher
             var dir = new DirectoryInfo(directionary);
             FileInfo[] files = dir.GetFiles();
             var carMake = files
-            .Where(item => item.Extension == type)
+            .Where(item => item.Extension == fileType)
             .Select(item => item);
 
             foreach (var item in carMake)
