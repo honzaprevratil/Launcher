@@ -10,12 +10,17 @@ namespace Launcher
     [DelimitedRecord(";")]
     public sealed class DataClass
     {
-        public String FullPath { get; set; }
-        public String FileName { get; set; }
+        public string ParametrName { get; set; }
+        public string Content { get; set; }
+
+        public DataClass(string parametrName, string content)
+        {
+            this.ParametrName = parametrName;
+            this.Content = content;
+        }
         public override string ToString()
         {
-            return FullPath;
-            //return FullPath + "    Název: " + FileName;
+            return Content;
         }
     }
 }

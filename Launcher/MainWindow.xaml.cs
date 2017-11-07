@@ -23,13 +23,12 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        FileFind FileFinder = new FileFind();
+        PathApp PApp = new PathApp();
         public MainWindow()
         {
             InitializeComponent();
-            dataListView.ItemsSource = FileFinder.DataList;
-            FileFinder.SlnFilesInDirs();
-            FileFinder.ExeFilesFromSlnFiles();
+            dataListView.ItemsSource = PApp.FileFinder.DataList;
+            PApp.RunModule();
         }
 
         private void Run_Click(object sender, RoutedEventArgs e)
@@ -41,6 +40,14 @@ namespace Launcher
             } catch
             {
                 MessageBoxResult result = MessageBox.Show("Error: Select a file to run it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Add_Path_Click(object sender, RoutedEventArgs e)
+        {
+            if (PathInput.ToString().Length > 0)
+            {
+                PApp.PathWorker.WritePath(PathInput.ToString());
             }
         }
     }

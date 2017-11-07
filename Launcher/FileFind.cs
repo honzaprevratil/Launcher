@@ -12,20 +12,19 @@ namespace Launcher
 {
     class FileFind
     {
-        public ObservableCollection<DataClass> DataList = new ObservableCollection<DataClass> { };
-        public string FileName = @"cesty.txt";
+        public ObservableCollection<PathClass> DataList = new ObservableCollection<PathClass>();
+        public List<PathClass> SlnDataList = new List<PathClass>();
 
         public void ExeFilesFromSlnFiles()
         {
-            List<DataClass> DataTemp = new List<DataClass>();
-            foreach (DataClass Cesta in DataList)
+            foreach (PathClass Cesta in SlnDataList)
             {
                 string cestaStr = Cesta.FullPath.ToString().Substring(0, (Cesta.FullPath.ToString()).Length -4);
                 string nazevStr = Cesta.FileName.ToString();
                 string slozka = nazevStr.Substring(0, nazevStr.Length - 4);
                 // string cestaStrBin = cestaStr.Substring(0, cestaStr.Length - 4) + "\\bin";
                 string csprojFile = cestaStr + "\\" + slozka + ".csproj";
-
+                Console.WriteLine(csprojFile);
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.Load(csprojFile);
                 XmlNamespaceManager mgr = new XmlNamespaceManager(xmldoc.NameTable);
@@ -37,26 +36,18 @@ namespace Launcher
                     FileInfo exeFile = new FileInfo(exePath);
                     if (exeFile.Exists)
                     {
-                        DataClass x = new DataClass();
-                        x.FullPath = exeFile.FullName;
-                        x.FileName = exeFile.Name;
-                        DataTemp.Add(x);
+                        DataList.Add(new PathClass(exeFile.FullName, exeFile.Name));
                     }
                 }
-            }
-            DataList.Clear();
-            foreach (DataClass x in DataTemp)
-            {
-                DataList.Add(x);
             }
         }
         public void SlnFilesInDirs(string dirRoot = "0")
         {
             if (dirRoot == "0")
             {
-                //directionary = @"D:\prevrja15";
-                dirRoot = @"E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos";
-                DataList.Clear();
+                dirRoot = @"D:\prevrja15";
+                //dirRoot = @"E:\Honzovo\Škola\SPS\3ITB\VAH\MVS Repos";
+                SlnDataList.Clear();
             }
 
             List<DirectoryInfo> RootDirs = new List<DirectoryInfo>(); //všechny podsložky root složky
@@ -71,10 +62,7 @@ namespace Launcher
                 {
                     foreach (FileInfo file in slnFilesInDir) // pro každý sln
                     {
-                        DataClass x = new DataClass();
-                        x.FullPath = file.FullName;
-                        x.FileName = file.Name;
-                        DataList.Add(x);
+                        SlnDataList.Add(new PathClass(file.FullName, file.Name));
                     }
                 }
                 else //neobsahuje .sln
@@ -89,15 +77,9 @@ namespace Launcher
                 }
             }
         }
-        public List<FileInfo> FindFilesInDir(string directionary = "0", string fileType = ".exe")
+        public List<FileInfo> FindFilesInDir(string directionary, string fileType = ".exe")
         {
-            List<FileInfo> returnData = new List<FileInfo> { };
-
-            //@"D:\prevrja15"
-            if (directionary == "0")
-            {
-                directionary = @"D:\prevrja15\Launcher\Launcher\bin\Debug";
-            }
+            List<FileInfo> returnData = new List<FileInfo>();
 
             var dir = new DirectoryInfo(directionary);
             FileInfo[] files = dir.GetFiles();
@@ -110,49 +92,6 @@ namespace Launcher
                 returnData.Add(item);
             }
             return returnData;
-        }
-        public void CreateFile(string FileName)
-        {
-            File.Create(FileName);
-        }
-        public void WriteData(string cesta)
-        {
-            if (File.Exists(FileName))
-            {
-                DataClass record;
-
-                record = new DataClass();
-                record.FullPath = cesta;
-                DataList.Add(record);
-
-                var engine = new FileHelperEngine<DataClass>();
-                engine.WriteFile(@"fileTXT.txt", DataList);
-            }
-            else
-            {
-                CreateFile(FileName);
-            }
-        }
-        public void RefreshData()
-        {
-            var engine = new FileHelperEngine<DataClass>();
-            DataClass[] res;
-
-            if (File.Exists(FileName))
-            {
-                res = engine.ReadFile(FileName);
-            }
-            else
-            {
-                CreateFile(FileName);
-                res = engine.ReadFile(FileName);
-            }
-
-            DataList.Clear();
-            foreach (var record in res)
-            {
-                DataList.Add(record);
-            }
         }
     }
 }

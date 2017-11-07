@@ -43,12 +43,15 @@
         <materialDesign:Card Padding="15" Margin="3,33,3,0" Height="85">
             <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of Apps (.exe) in projects</TextBlock>
         </materialDesign:Card>
-        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="328" Margin="7,130,0,0" VerticalAlignment="Top" Width="679">
+        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="295" Margin="7,163,0,0" VerticalAlignment="Top" Width="679">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox x:Name="PathInput"  HorizontalAlignment="Left" Height="23" Margin="53,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="500"/>
+        <Button Content="Add Path" HorizontalAlignment="Left" Margin="569,127,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="Add_Path_Click"/>
+        <Label Content="Path:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,127,0,0" Height="23" Width="38"/>
     </Grid>
 </Window>
