@@ -27,11 +27,11 @@ namespace Launcher
                 }
                 if (FileFinder.DataList.Count <= 0)
                 {
-                    MessageBoxResult result = MessageBox.Show("Error: Change (Edit or Add) loading path of programs. Nothing was found.", "Error: Path settings", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Error: Change (Edit or Add) loading path of programs. Nothing was found.", "Error: Path settings", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             } else
             {
-                MessageBoxResult result = MessageBox.Show("Error: Change (Edit or Add) loading path of programs. Nothing was found.", "Error: Path settings", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Change (Edit or Add) loading path of programs. Nothing was found.", "Error: Path settings", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

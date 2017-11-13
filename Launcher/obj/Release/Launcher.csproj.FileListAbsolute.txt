@@ -81,3 +81,5 @@ E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.e
 E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.application
 E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.exe
 E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\Launcher.pdb
+E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\pages\DeletePage.g.cs
+E:\Honzovo\Skola\SPS\3ITB\VAH\MVS Repos\Launcher\Launcher\obj\Release\pages\DeletePage.baml

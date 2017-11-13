@@ -54,6 +54,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Frame Grid.Row="3" x:Name="PagesFrame" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Row="3" x:Name="PagesFrame" NavigationUIVisibility="Hidden" Source="pages/PathSettings.xaml"/>
     </Grid>
 </Window>

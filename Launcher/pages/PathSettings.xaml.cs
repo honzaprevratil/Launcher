@@ -36,7 +36,7 @@ namespace Launcher.pages
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Error: Fill tke path name.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Fill the path name.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

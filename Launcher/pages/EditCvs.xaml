@@ -27,7 +27,7 @@
 
         <Label Content="Description:" HorizontalAlignment="Left" Margin="3,3,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBox TextAlignment="Left" x:Name="DescriptionField" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="77" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="658"/>
-        <Button Content="Load" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="Load_Click"/>
+        <Button Content="Reload" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="Load_Click"/>
         <Button Content="Save" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="Save_Click" Grid.Column="1"/>
     </Grid>
 </Page>

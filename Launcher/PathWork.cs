@@ -38,13 +38,13 @@ namespace Launcher
             } catch {};
             if (dirPath.Exists)
             {
-                PathsToFindIn.Add(new DataClass("path", newPath));
-
+                DataClass newRow = new DataClass("path", newPath);
+                PathsToFindIn.Add(newRow);
                 CheckPathsFile();
                 engine.WriteFile(PathsFileName, PathsToFindIn);
             } else
             {
-                MessageBoxResult result = MessageBox.Show("Error: Fill your path again, this path do not exist.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Fill your path again, this path do not exist.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         public void RemovePath(DataClass RemoveThis)

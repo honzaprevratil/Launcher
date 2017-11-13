@@ -39,7 +39,7 @@ namespace Launcher.pages
                 }
             } else
             {
-                MessageBoxResult result = MessageBox.Show("Error: This path was not found. Check it again.", "Error: Path input", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: This path was not found. Check it again.", "Error: Path input", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Page_Initialized(object sender, EventArgs e)

@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <materialDesign:Card Grid.ColumnSpan="3" Margin="3" Padding="7" Height="42">
-            <TextBlock FontSize="15" Style="{DynamicResource MaterialDesignTitleTextBlock}">Move Project</TextBlock>
+            <TextBlock FontSize="15" Style="{DynamicResource MaterialDesignTitleTextBlock}">Copy Project</TextBlock>
         </materialDesign:Card>
 
         <Label Grid.Row="1" Content="Source Path:" Margin="8,18,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="147"/>
@@ -30,6 +30,6 @@
 
         <Label Grid.Row="2" Content="Destination Path:" Margin="8,16,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" Width="145"/>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5,3,0,0" x:Name="DestinationPath"  HorizontalAlignment="Left" Height="34" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="508"/>
-        <Button Content="Move" HorizontalAlignment="Left" Margin="15,13,0,-4" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="MoveToPath_Click"/>
+        <Button Content="Copy" HorizontalAlignment="Left" Margin="15,13,0,-4" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="MoveToPath_Click"/>
     </Grid>
 </Page>

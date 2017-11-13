@@ -30,7 +30,17 @@ namespace Launcher
         }
         public void WriteCsv(string writeData)
         {
-            AboutProjData.Add(new DataClass((string)Application.Current.Properties["path"], writeData));
+            writeData = writeData.Replace(';',',');
+            DataClass newRow = new DataClass((string)Application.Current.Properties["path"], writeData);
+            try
+            {
+                AboutProjData.RemoveAll(x => x.ParametrName.Contains( (string)Application.Current.Properties["path"]) );
+                AboutProjData.Add(newRow);
+            }
+            catch
+            {
+                AboutProjData.Add(newRow);
+            }
             CheckCsvFile();
             engine.WriteFile(CsvFileName, AboutProjData);
         }

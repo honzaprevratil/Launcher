@@ -30,11 +30,11 @@ namespace Launcher.pages
             if(MoveWork.testPaths(SourcePath.Text, DestinationPath.Text))
             {
                 MoveWork.MoveProject(SourcePath.Text, DestinationPath.Text);
-                MessageBoxResult result = MessageBox.Show("Project copyied! \nFrom: '"+ SourcePath.Text +"' \nTo: " + DestinationPath.Text + "\nRefresh data to map it.", "Project copyied", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Project copyied! \nFrom: '"+ SourcePath.Text +"' \nTo: " + DestinationPath.Text + "\nRefresh data to map it.", "Project copyied", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBoxResult result = MessageBox.Show("Error: Check your paths again. Some of them do not exist.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Check your paths again. Some of them do not exist.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

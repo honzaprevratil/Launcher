@@ -40,7 +40,7 @@ namespace Launcher
             }
             catch
             {
-                MessageBoxResult result = MessageBox.Show("Error: Select a file to run it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Select a file to run it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -56,7 +56,7 @@ namespace Launcher
             }
             catch
             {
-                MessageBoxResult result = MessageBox.Show("Error: Select a project to move it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Select a project to move it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -94,7 +94,7 @@ namespace Launcher
             }
             catch
             {
-                MessageBoxResult result = MessageBox.Show("Error: Select a project to delete it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error: Select a project to delete it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
