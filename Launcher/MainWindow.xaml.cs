@@ -23,12 +23,12 @@ namespace Launcher
     /// </summary>
     public partial class MainWindow : Window
     {
-        PathApp PApp = new PathApp();
+        public static LauncherApp LaunchApp = new LauncherApp();
         public MainWindow()
         {
             InitializeComponent();
-            dataListView.ItemsSource = PApp.FileFinder.DataList;
-            PApp.RunModule();
+            LaunchApp.RunModule();
+            dataListView.ItemsSource = LaunchApp.FileFinder.DataList;
         }
 
         private void Run_Click(object sender, RoutedEventArgs e)
@@ -37,17 +37,64 @@ namespace Launcher
             {
                 string path = dataListView.SelectedItem.ToString();
                 Process.Start(path);
-            } catch
+            }
+            catch
             {
                 MessageBoxResult result = MessageBox.Show("Error: Select a file to run it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        private void Add_Path_Click(object sender, RoutedEventArgs e)
+        private void Navigate_Move(object sender, RoutedEventArgs e)
         {
-            if (PathInput.ToString().Length > 0)
+            try
             {
-                PApp.PathWorker.WritePath(PathInput.ToString());
+                string path = (string)Application.Current.Properties["path"];
+                if (path.Length > 0)
+                {
+                    PagesFrame.Navigate(new Uri("/pages/Move.xaml", UriKind.Relative));
+                }
+            }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("Error: Select a project to move it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Navigate_PathSettings(object sender, RoutedEventArgs e)
+        {
+            PagesFrame.Navigate(new Uri("/pages/PathSettings.xaml", UriKind.Relative)); //change Uri
+        }
+
+        private void Reload_Click(object sender, RoutedEventArgs e)
+        {
+            LaunchApp.RunModule();
+            dataListView.ItemsSource = LaunchApp.FileFinder.DataList;
+        }
+
+        private void dataListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                string path = dataListView.SelectedItem.ToString();
+                Application.Current.Properties["path"] = path;
+                PagesFrame.NavigationService.Navigate(new Uri("/pages/EditCvs.xaml", UriKind.Relative), path, true); //change Uri
+            }
+            catch { }
+        }
+
+        private void Navigate_Delete(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string path = (string)Application.Current.Properties["path"];
+                if (path.Length > 0)
+                {
+                    PagesFrame.Navigate(new Uri("/pages/DeletePage.xaml", UriKind.Relative));
+                }
+            }
+            catch
+            {
+                MessageBoxResult result = MessageBox.Show("Error: Select a project to delete it.", "Error: File Select", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

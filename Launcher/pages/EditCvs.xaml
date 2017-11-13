@@ -1,0 +1,33 @@
+﻿<Page x:Class="Launcher.pages.EditCvs"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Launcher.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="700"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="Path Settings">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="7*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <materialDesign:Card Grid.ColumnSpan="2" Margin="3" Padding="7" Height="42">
+            <TextBlock FontSize="15" Style="{DynamicResource MaterialDesignTitleTextBlock}">Project description</TextBlock>
+        </materialDesign:Card>
+
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="3,3,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox TextAlignment="Left" x:Name="DescriptionField" Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="77" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="658"/>
+        <Button Content="Load" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="Load_Click"/>
+        <Button Content="Save" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="3" VerticalAlignment="Top" Width="74" Click="Save_Click" Grid.Column="1"/>
+    </Grid>
+</Page>

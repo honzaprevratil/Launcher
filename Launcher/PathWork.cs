@@ -6,17 +6,18 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Launcher
 {
-    class PathWork
+    public class PathWork
     {
-        public List<DataClass> PathsToFindIn = new List<DataClass>();
+        public ObservableCollection<DataClass> PathsToFindIn = new ObservableCollection<DataClass>();
         public string PathsFileName = @"paths.csv";
+        private FileHelperEngine<DataClass> engine = new FileHelperEngine<DataClass>();
 
         public void ReadPaths()
         {
-            var engine = new FileHelperEngine<DataClass>();
             DataClass[] res;
 
             CheckPathsFile();
@@ -30,21 +31,34 @@ namespace Launcher
         }
         public void WritePath(string newPath)
         {
-            var engine = new FileHelperEngine<DataClass>();
-            PathsToFindIn.Add(new DataClass("path", newPath));
+            DirectoryInfo dirPath = new DirectoryInfo("none");
+            try
+            {
+                dirPath = new DirectoryInfo(newPath);
+            } catch {};
+            if (dirPath.Exists)
+            {
+                PathsToFindIn.Add(new DataClass("path", newPath));
 
+                CheckPathsFile();
+                engine.WriteFile(PathsFileName, PathsToFindIn);
+            } else
+            {
+                MessageBoxResult result = MessageBox.Show("Error: Fill your path again, this path do not exist.", "Error: Path enter", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        public void RemovePath(DataClass RemoveThis)
+        {
+            PathsToFindIn.Remove(RemoveThis);
             CheckPathsFile();
             engine.WriteFile(PathsFileName, PathsToFindIn);
         }
         public void CheckPathsFile()
         {
-            var engine = new FileHelperEngine<DataClass>();
-            DataClass[] res;
-
             if (!File.Exists(PathsFileName))
             {
-                File.Create(PathsFileName);
-                res = engine.ReadFile(PathsFileName);
+                FileStream x = File.Create(PathsFileName);
+                x.Close();
             }
         }
     }

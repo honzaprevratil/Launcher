@@ -10,7 +10,7 @@ using System.Xml;
 
 namespace Launcher
 {
-    class FileFind
+    public class FileFind
     {
         public ObservableCollection<PathClass> DataList = new ObservableCollection<PathClass>();
         public List<PathClass> SlnDataList = new List<PathClass>();
@@ -24,6 +24,7 @@ namespace Launcher
                 string slozka = nazevStr.Substring(0, nazevStr.Length - 4);
                 // string cestaStrBin = cestaStr.Substring(0, cestaStr.Length - 4) + "\\bin";
                 string csprojFile = cestaStr + "\\" + slozka + ".csproj";
+
                 Console.WriteLine(csprojFile);
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.Load(csprojFile);
@@ -36,13 +37,22 @@ namespace Launcher
                     FileInfo exeFile = new FileInfo(exePath);
                     if (exeFile.Exists)
                     {
-                        DataList.Add(new PathClass(exeFile.FullName, exeFile.Name));
+                        PathClass pathToAdd = new PathClass(exeFile.FullName, exeFile.Name);
+                        if (!DataList.Contains(pathToAdd))
+                        {
+                            DataList.Add(pathToAdd);
+                        }
                     }
                 }
             }
         }
-        public void SlnFilesInDirs(string dirRoot = "0")
+        public bool SlnFilesInDirs(string dirRoot = "0", int actualRecursion = 0)
         {
+            if (!(new DirectoryInfo(dirRoot).Exists))
+            {
+                return false;
+            }
+
             if (dirRoot == "0")
             {
                 dirRoot = @"D:\prevrja15";
@@ -67,30 +77,43 @@ namespace Launcher
                 }
                 else //neobsahuje .sln
                 {
-                    List<DirectoryInfo> DirsOfRootDir = new List<DirectoryInfo>(oneRootDir.GetDirectories());// podsložky jedné root složky
-                    if (DirsOfRootDir.Any())
+                    try
                     {
-                        string Path = oneRootDir.FullName;
-                        SlnFilesInDirs(Path);// rekurze
+                        List<DirectoryInfo> DirsOfRootDir = new List<DirectoryInfo>(oneRootDir.GetDirectories());// podsložky jedné root složky
+                        if (DirsOfRootDir.Any())
+                        {
+                            string Path = oneRootDir.FullName;
+                            if (actualRecursion < 3)
+                            {
+                                SlnFilesInDirs(Path, actualRecursion + 1);// rekurze
+                            }
+                        }
                     }
+                    catch
+                    {
 
+                    }
                 }
             }
+            return true;
         }
         public List<FileInfo> FindFilesInDir(string directionary, string fileType = ".exe")
         {
             List<FileInfo> returnData = new List<FileInfo>();
 
             var dir = new DirectoryInfo(directionary);
-            FileInfo[] files = dir.GetFiles();
-            var carMake = files
-            .Where(item => item.Extension == fileType)
-            .Select(item => item);
 
-            foreach (var item in carMake)
-            {
-                returnData.Add(item);
-            }
+            try { 
+                FileInfo[] files = dir.GetFiles();
+                var carMake = files
+                .Where(item => item.Extension == fileType)
+                .Select(item => item);
+
+                foreach (var item in carMake)
+                {
+                    returnData.Add(item);
+                }
+            } catch { };
             return returnData;
         }
     }

@@ -28,5 +28,17 @@ namespace Launcher
             return FullPath;
             //return FullPath + "    Název: " + FileName;
         }
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            PathClass objAsPart = obj as PathClass;
+            if (objAsPart == null) return false;
+            else return Equals(objAsPart);
+        }
+        public bool Equals(PathClass other)
+        {
+            if (other == null) return false;
+            return (this.FullPath.Equals(other.FullPath));
+        }
     }
 }

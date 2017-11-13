@@ -13,45 +13,47 @@
         TextOptions.TextRenderingMode="Auto"    
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"    
-        Title="App Launcher" Height="500" Width="700">
+        Title="App Launcher" Height="600" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <ToolBarTray>
             <ToolBar Style="{DynamicResource MaterialDesignToolBar}" ClipToBounds="False">
-                <Button ToolTip="Run selected program" Click="Run_Click">
+                <Button ToolTip="Reload data" Click="Reload_Click" VerticalAlignment="Bottom">
+                    <materialDesign:PackIcon Kind="Refresh" />
+                </Button>
+                <Button ToolTip="Run selected program" Click="Run_Click" VerticalAlignment="Bottom">
                     <materialDesign:PackIcon Kind="Run" />
                 </Button>
-                <Button ToolTip="Move selected project" Click="Run_Click">
+                <Button ToolTip="Copy selected program" Click="Navigate_Move">
                     <materialDesign:PackIcon Kind="ContentCopy" />
                 </Button>
-                <Separator></Separator>
-                <Button ToolTip="Create .cvs file about project" Click="Run_Click">
-                    <materialDesign:PackIcon Kind="ContentPaste" />
-                </Button>
-                <Button  ToolTip="Edit .cvs file about project" Click="Run_Click">
-                    <materialDesign:PackIcon Kind="Pencil" />
+                <Button ToolTip="Delete selected program with all dirs" Click="Navigate_Delete">
+                    <materialDesign:PackIcon Kind="Recycle" />
                 </Button>
                 <Separator></Separator>
-                <Button ToolTip="Change loading path of projects" Click="Run_Click">
+                <Button ToolTip="Change loading path of programs" Click="Navigate_PathSettings">
                     <materialDesign:PackIcon Kind="Settings" />
                 </Button>
             </ToolBar>
         </ToolBarTray>
-        <materialDesign:Card Padding="15" Margin="3,33,3,0" Height="85">
-            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of Apps (.exe) in projects</TextBlock>
+        <materialDesign:Card Grid.Row="1" Margin="3" Padding="15" Height="62">
+            <TextBlock Style="{DynamicResource MaterialDesignTitleTextBlock}">Launcher of programs</TextBlock>
         </materialDesign:Card>
-        <ListView x:Name="dataListView" HorizontalAlignment="Left" Height="295" Margin="7,163,0,0" VerticalAlignment="Top" Width="679">
+        <ListView Grid.Row="2" Margin="5,5,0,0"  x:Name="dataListView" HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="680" SelectionMode="Single" SelectionChanged="dataListView_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBox x:Name="PathInput"  HorizontalAlignment="Left" Height="23" Margin="53,127,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="500"/>
-        <Button Content="Add Path" HorizontalAlignment="Left" Margin="569,127,0,0" VerticalAlignment="Top" Width="104" Height="23" Click="Add_Path_Click"/>
-        <Label Content="Path:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,127,0,0" Height="23" Width="38"/>
+        <Frame Grid.Row="3" x:Name="PagesFrame" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
